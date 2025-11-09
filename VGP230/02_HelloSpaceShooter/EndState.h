@@ -12,4 +12,9 @@ public:
 	State Update(float deltaTime) override;
 	void Render() override;
 	void Unload() override;
+
+	void SetFinalScore(int score);
+
+private:
+	int mFinalScore;
 };

@@ -15,6 +15,8 @@ public:
 	void Render() override;
 	void Unload() override;
 
+	int GetFinalScore() const;
+
 private:
 	 Game* mGame;
 };

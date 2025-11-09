@@ -30,7 +30,16 @@ bool GameLoop(float deltaTime)
 	gCurrentGameState->Render();
 	if (newState != gActiveState)
 	{
-		
+		if (gActiveState == State::RunGame && newState == State::End)
+		{
+			RunGameState* runState = dynamic_cast<RunGameState*>(gCurrentGameState);
+			EndState* endState = dynamic_cast<EndState*>(gGameStates[newState]);
+			if (runState != nullptr && endState != nullptr)
+			{
+				endState->SetFinalScore(runState->GetFinalScore());
+			}
+		}
+
 		gCurrentGameState->Unload();
 		gCurrentGameState = gGameStates[newState];
 		gCurrentGameState->Load();

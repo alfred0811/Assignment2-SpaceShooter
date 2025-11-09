@@ -1,6 +1,7 @@
 #include "RunGameState.h"
 #include <XEngine.h>
 #include "Game.h"
+#include "Score.h"
 
 RunGameState::RunGameState()
 	: GameState(State::RunGame)
@@ -40,4 +41,15 @@ void RunGameState::Unload()
 	mGame->Unload();
 	delete mGame;
 	mGame = nullptr;
+}
+int RunGameState::GetFinalScore() const
+{
+	if (mGame == nullptr)
+		return 0;
+
+	Score* score = mGame->GetScore();
+	if (score != nullptr)
+		return score->GetScore();
+
+	return 0;
 }
