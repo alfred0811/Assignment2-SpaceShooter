@@ -9,6 +9,7 @@ class Collidable;
 class Enemy;
 class ProgressBar;
 class EnemySpawner;
+class BossSpawner;
 class PowerUp;
 class Score;
 
@@ -34,7 +35,9 @@ private:
 	ProgressBar* mHealthBar;
 	std::vector<Collidable*> mCollidables;
 
+	// Spawners
 	EnemySpawner* mEnemySpawner;
+	BossSpawner* mBossSpawner;
 
 	// Background
 	X::TextureId mBackgroundId;

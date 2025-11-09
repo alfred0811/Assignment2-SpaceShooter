@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "ProgressBar.h"
 #include "EnemySpawner.h"
+#include "BossSpawner.h"
 #include "Score.h"
 
 Game::Game()
@@ -13,6 +14,7 @@ Game::Game()
 	, mBulletPool(nullptr)
 	, mHealthBar(nullptr)
 	, mEnemySpawner(nullptr)
+	, mBossSpawner(nullptr)
 	, mBackgroundId(0)
 	, mPowerUp(nullptr)
 	, mPowerUpSpawnTimer(15.0f)
@@ -53,6 +55,16 @@ void Game::Load()
 		AddCollidable(enemy);
 	}
 
+	mBossSpawner = new BossSpawner();
+	mBossSpawner->SetBulletPool(mBulletPool);
+	mBossSpawner->SetShip(mPlayer);
+	mBossSpawner->SetGame(this);
+	mBossSpawner->Load();
+	if (Boss* boss = mBossSpawner->GetBoss())
+	{
+		AddCollidable(boss);
+	}
+
 	// Setup bullet pool
 	mBulletPool->Load();
 	std::vector<Bullet*>& bullets = mBulletPool->GetBullets();
@@ -75,6 +87,11 @@ void Game::Update(float deltaTime)
 	mPlayer->Update(deltaTime);
 
 	mEnemySpawner->Update(deltaTime);
+
+	if (mBossSpawner)
+	{
+		mBossSpawner->Update(deltaTime);
+	}
 
 	mBulletPool->Update(deltaTime);
 
@@ -135,6 +152,10 @@ void Game::Render()
 
 	mPlayer->Render();
 	mEnemySpawner->Render();
+	if (mBossSpawner)
+	{
+		mBossSpawner->Render();
+	}
 	mBulletPool->Render();
 	mPowerUp->Render();
 	mHealthBar->Render();
@@ -157,6 +178,13 @@ void Game::Unload()
 	mEnemySpawner->Unload();
 	delete mEnemySpawner;
 	mEnemySpawner = nullptr;
+
+	if (mBossSpawner)
+	{
+		mBossSpawner->Unload();
+		delete mBossSpawner;
+		mBossSpawner = nullptr;
+	}
 
 	mPowerUp->Unload();
 	delete mPowerUp;

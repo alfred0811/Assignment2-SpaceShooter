@@ -134,6 +134,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AnimSpriteSheet.cpp" />
+    <ClCompile Include="Boss.cpp" />
+    <ClCompile Include="BossSpawner.cpp" />
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletPool.cpp" />
     <ClCompile Include="Collidable.cpp" />
@@ -154,6 +156,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AnimSpriteSheet.h" />
+    <ClInclude Include="Boss.h" />
+    <ClInclude Include="BossSpawner.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="BulletPool.h" />
     <ClInclude Include="Collidable.h" />
