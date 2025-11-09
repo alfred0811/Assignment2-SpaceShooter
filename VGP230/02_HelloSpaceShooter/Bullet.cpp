@@ -7,6 +7,7 @@ Bullet::Bullet()
 	, mPosition(0.0f)
 	, mRotation(0.0f)
 	, mLifeTime(0.0f)
+	, mBulletType(ET_BULLET_PLAYER)
 {
 	
 }
@@ -48,6 +49,8 @@ void Bullet::SetActive(const X::Math::Vector2& pos, float rotation, float lifeTi
 	mPosition = pos;
 	mRotation = rotation;
 	mLifeTime = lifeTime;
+
+	SetEntityType(mBulletType);
 }
 void Bullet::SetEntityType(EntityType entitytype)
 {
@@ -72,7 +75,7 @@ bool Bullet::IsActive() const
 
 int Bullet::GetType() const
 {
-	return ET_BULLET_PLAYER;
+	return mBulletType;
 }
 
 const X::Math::Vector2& Bullet::GetPosition() const

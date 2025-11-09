@@ -43,9 +43,10 @@ void EnemySpawner::Update(float deltaTime)
 	mActiveEnemyCount = 0;
 	for (Enemy* enemy : mEnemies)
 	{
+		enemy->Update(deltaTime);
+
 		if (enemy->IsAlive())
 		{
-			enemy->Update(deltaTime);
 			mActiveEnemyCount++;
 		}
 	}
@@ -63,10 +64,7 @@ void EnemySpawner::Render()
 {
 	for (Enemy* enemy : mEnemies)
 	{
-		if (enemy->IsAlive())
-		{
-			enemy->Render();
-		}
+		enemy->Render();
 	}
 	
 }
