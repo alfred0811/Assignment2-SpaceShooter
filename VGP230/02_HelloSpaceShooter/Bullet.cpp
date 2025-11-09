@@ -57,7 +57,7 @@ void Bullet::SetEntityType(EntityType entitytype)
 	mBulletType = entitytype;
 	if (entitytype == ET_BULLET_PLAYER)
 	{
-		SetCollisionFilter(ET_ENEMY);
+		SetCollisionFilter(ET_ENEMY | ET_BOSS);
 	}
 	else if (entitytype == ET_BULLET_ENEMY)
 	{

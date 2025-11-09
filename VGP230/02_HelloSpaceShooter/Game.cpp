@@ -3,6 +3,7 @@
 #include "BulletPool.h"
 #include "Bullet.h"
 #include "Enemy.h"
+#include "Boss.h"
 #include "ProgressBar.h"
 #include "EnemySpawner.h"
 #include "BossSpawner.h"
@@ -60,10 +61,7 @@ void Game::Load()
 	mBossSpawner->SetShip(mPlayer);
 	mBossSpawner->SetGame(this);
 	mBossSpawner->Load();
-	if (Boss* boss = mBossSpawner->GetBoss())
-	{
-		AddCollidable(boss);
-	}
+	AddCollidable(mBossSpawner->GetBoss());
 
 	// Setup bullet pool
 	mBulletPool->Load();
